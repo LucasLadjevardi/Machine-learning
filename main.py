@@ -129,8 +129,8 @@ def main():
                 deblurred_img=model(inputs)
                 temploss=criterion(deblurred_img, target)
                 validationloss+=temploss.item()
+                print(f"Validation loss [{validationloss/len(dataloaderValid):.4f}]")
 
-        print(f"Validation loss [{validationloss/len(dataloaderValid):.4f}]")
         if validationloss < minimalloss:
             minimalloss=validationloss
             torch.save(model.state_dict(), "sharpening_model.pth")
